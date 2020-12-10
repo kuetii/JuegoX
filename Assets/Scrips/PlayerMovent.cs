@@ -41,10 +41,11 @@ public class PlayerMovent : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
         }
-        if (Input.GetKey(KeyCode.Space)&& isJumping == true){
-            
+      /*  if (Input.GetKey(KeyCode.Space) && isJumping == true)
         {
-                if (jumpTimeCounter >0)
+
+            {
+                if (jumpTimeCounter > 0)
                 {
                     rb.velocity = Vector2.up * jumpForce;
                     jumpTimeCounter -= Time.deltaTime;
@@ -53,12 +54,12 @@ public class PlayerMovent : MonoBehaviour
                 {
                     isJumping = false;
                 }
-        }
+            }
             if (Input.GetKeyUp(KeyCode.Space))
-             {
+            {
                 isJumping = false;
 
             }
-        }
+        }*/
     }
 }
