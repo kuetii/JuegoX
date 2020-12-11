@@ -33,7 +33,7 @@ public class PlayerMovent : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody2D>();
-        textScore.text = "Score:" + score;
+        //textScore.text = "Score:" + score;
 
     }
 
@@ -46,7 +46,10 @@ public class PlayerMovent : MonoBehaviour
         rb.velocity = new Vector2(movenInput * speed, rb.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
-
+        if(currrentNoDamageCD>=0)
+        {
+            currrentNoDamageCD -= Time.deltaTime;
+        }
 
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
@@ -74,7 +77,7 @@ public class PlayerMovent : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Abismo"))
         {
-            Destroy(collision.gameObject);
+            
             PerderVida(1);
         }
     }
@@ -84,26 +87,40 @@ public class PlayerMovent : MonoBehaviour
         textScore.text = "Score: " + score;
     }
 
-  
-    
-    
+
+
+
     void PerderVida(int damage)
     {
+        if (currrentNoDamageCD <= 0)
         {
-            if (currrentNoDamageCD <= 0)
-            {
-                vida = vida - damage;
-                currrentNoDamageCD = cdNoDamage;
-            }
+            vida = vida - damage;
+            currrentNoDamageCD = cdNoDamage;
+        }
 
-            if (vida <= 0)
-            {
-                Destroy(gameObject);
-            }
+        if (vida <= 0)
+        {
+            Destroy(gameObject);
+        }
 
+        ContadorVidas();
+    }
+    void ContadorVidas()
+    {
+        for (int i = 0; i < TablaDeVida.Length; i++)
+        {
+            TablaDeVida[i].SetActive(false);
+        }
+        for (int i = 0; i < vida; i++)
+        {
+            TablaDeVida[i].SetActive(true);
         }
     }
+
 }
+
+
+
 
 
 

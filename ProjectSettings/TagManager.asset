@@ -11,6 +11,8 @@ TagManager:
   - Score
   - Estrella
   - BastonNavidad
+  - Vida
+  - Abismo
   layers:
   - Default
   - TransparentFX
