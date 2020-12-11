@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerMovent : MonoBehaviour
 {
 
@@ -18,16 +18,29 @@ public class PlayerMovent : MonoBehaviour
     public float jumpTime;
     private bool isJumping;
 
+    int score = 0;
+    public Text textScore;
+    public GameObject Estrella;
+
+
+    public int vida;
+    public GameObject[] TablaDeVida;
+    public float cdNoDamage;
+    float currrentNoDamageCD;
 
     // Start is called before the first frame update
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
+        textScore.text = "Score:" + score;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         //Jump Movent//
         movenInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(movenInput * speed, rb.velocity.y);
@@ -41,25 +54,59 @@ public class PlayerMovent : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
         }
-      /*  if (Input.GetKey(KeyCode.Space) && isJumping == true)
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Estrella"))
         {
+            Destroy(collision.gameObject);
+            SumScore(100);
+        }
+        if (collision.gameObject.CompareTag("Regalo"))
+        {
+            Destroy(collision.gameObject);
+            Instantiate(Estrella, collision.gameObject.transform.position, Estrella.transform.rotation);
+        }
+        if (collision.gameObject.CompareTag("BastonNavidad"))
+        {
+            Destroy(collision.gameObject);
+            SumScore(10);
+        }
+        if (collision.gameObject.CompareTag("Abismo"))
+        {
+            Destroy(collision.gameObject);
+            PerderVida(1);
+        }
+    }
+    public void SumScore(int scoreToSum)
+    {
+        score = score + scoreToSum;
+        textScore.text = "Score: " + score;
+    }
 
+  
+    
+    
+    void PerderVida(int damage)
+    {
+        {
+            if (currrentNoDamageCD <= 0)
             {
-                if (jumpTimeCounter > 0)
-                {
-                    rb.velocity = Vector2.up * jumpForce;
-                    jumpTimeCounter -= Time.deltaTime;
-                }
-                else
-                {
-                    isJumping = false;
-                }
+                vida = vida - damage;
+                currrentNoDamageCD = cdNoDamage;
             }
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                isJumping = false;
 
+            if (vida <= 0)
+            {
+                Destroy(gameObject);
             }
-        }*/
+
+        }
     }
 }
+
+
+
+
+
+
