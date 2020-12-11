@@ -42,7 +42,7 @@ public class PlayerMovent : MonoBehaviour
     {
 
         //Jump Movent//
-        movenInput = Input.GetAxisRaw("Horizontal");
+        movenInput = Input.GetAxisRaw("HorizontalP1");
         rb.velocity = new Vector2(movenInput * speed, rb.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
