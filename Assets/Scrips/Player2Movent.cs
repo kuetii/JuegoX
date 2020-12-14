@@ -18,7 +18,9 @@ public class Player2Movent : MonoBehaviour
     private bool isJumping;
     public float minX;
     public float maxX;
-   
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +39,14 @@ public class Player2Movent : MonoBehaviour
             transform.position = transform.position + Vector3.left * speed * Time.deltaTime;
         }
         isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
-        if (isGrounded == true && Input.GetKeyDown(KeyCode.UpArrow))
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             rb.velocity = Vector2.up * jumpForce;
             isJumping = true;
             jumpTimeCounter = jumpTime;
         }
-    }  
+
+    }  s
     
 }

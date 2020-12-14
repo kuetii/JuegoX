@@ -62,7 +62,7 @@ public class PlayerMovent : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && current <= 0)
         {
             current = cdMax;
-           GameObject BalaTemporal = Instantiate(Bullet, SitioDeSpawn.transform.position, Bullet.transform.rotation);
+         GameObject BalaTemporal = Instantiate(Bullet,SitioDeSpawn.transform.position, Bullet.transform.rotation);
 
             // si miro hacia la derecha va la bala a la derecha
             if (this.GetComponent<SpriteRenderer>().flipX == false) 
@@ -82,7 +82,7 @@ public class PlayerMovent : MonoBehaviour
         }
         else if(movenInput < 0)
         {
-            this.GetComponent<SpriteRenderer>().flipX = true;
+        this.GetComponent<SpriteRenderer>().flipX = true;
         }
         //Jump
 
@@ -95,7 +95,7 @@ public class PlayerMovent : MonoBehaviour
     }
     //puntuacion,PerdervidasAbismo 
         private void OnTriggerEnter2D(Collider2D collision)
-    {
+        {
         if (collision.gameObject.CompareTag("Estrella"))
         {
             Destroy(collision.gameObject);
@@ -115,6 +115,12 @@ public class PlayerMovent : MonoBehaviour
         {
             
             PerderVida(1);
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            Destroy(collision.gameObject);
+            SumScore(-10);
         }
     }
     public void SumScore(int scoreToSum)
