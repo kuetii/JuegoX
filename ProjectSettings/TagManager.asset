@@ -13,6 +13,7 @@ TagManager:
   - BastonNavidad
   - Vida
   - Abismo
+  - Bala
   layers:
   - Default
   - TransparentFX

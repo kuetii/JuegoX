@@ -28,6 +28,14 @@ public class PlayerMovent : MonoBehaviour
     public float cdNoDamage;
     float currrentNoDamageCD;
 
+
+    public float maxX;
+    public float minX;  
+    public float cdMax;
+    public float current;
+    public GameObject Bullet;
+    public GameObject SitioDeSpawn;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +48,7 @@ public class PlayerMovent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        current -= Time.deltaTime;
         //Jump Movent//
         movenInput = Input.GetAxisRaw("HorizontalP1");
         rb.velocity = new Vector2(movenInput * speed, rb.velocity.y);
@@ -50,6 +58,33 @@ public class PlayerMovent : MonoBehaviour
         {
             currrentNoDamageCD -= Time.deltaTime;
         }
+        //Spawn Bullet
+        if (Input.GetKeyDown(KeyCode.R) && current <= 0)
+        {
+            current = cdMax;
+           GameObject BalaTemporal = Instantiate(Bullet, SitioDeSpawn.transform.position, Bullet.transform.rotation);
+
+            // si miro hacia la derecha va la bala a la derecha
+            if (this.GetComponent<SpriteRenderer>().flipX == false) 
+            {
+
+                BalaTemporal.GetComponent<MoventBullet>().Direccion = Vector3.right;
+            }
+            else 
+            {
+                BalaTemporal.GetComponent<MoventBullet>().Direccion = Vector3.left;
+            }
+            //si miro a la izquierda va la bala a la izquierda
+        }
+        if (movenInput >  0)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if(movenInput < 0)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        //Jump
 
         if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
@@ -58,7 +93,8 @@ public class PlayerMovent : MonoBehaviour
             jumpTimeCounter = jumpTime;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    //puntuacion,PerdervidasAbismo 
+        private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Estrella"))
         {
@@ -89,7 +125,7 @@ public class PlayerMovent : MonoBehaviour
 
 
 
-
+    //vidas
     void PerderVida(int damage)
     {
         if (currrentNoDamageCD <= 0)
