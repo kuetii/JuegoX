@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: ba3739f10784333488870286550abb70
+guid: 219d24d73536f6f49905fa0c2691a6a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1817850489661442897
-    second: ArbolesEstatuasNavidad 1_0
+      213: -1053874282410678759
+    second: 323-3231493_drawn-lawn-pixel-grass-sprites-clipart_preview_rev_1 (1)_0
+  - first:
+      213: 8865836310331600685
+    second: 323-3231493_drawn-lawn-pixel-grass-sprites-clipart_preview_rev_1 (1)_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -86,17 +89,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ArbolesEstatuasNavidad 1_0
+      name: 323-3231493_drawn-lawn-pixel-grass-sprites-clipart_preview_rev_1 (1)_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 110
-        width: 93
-        height: 88
+        x: 264
+        y: 255
+        width: 95
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,8 +119,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15b4a03936d4a3910800000000000000
-      internalID: 1817850489661442897
+      spriteID: 916edfe7ce2ef51f0800000000000000
+      internalID: -1053874282410678759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 323-3231493_drawn-lawn-pixel-grass-sprites-clipart_preview_rev_1 (1)_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 30
+        width: 468
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2f231aa627c90b70800000000000000
+      internalID: 8865836310331600685
       vertices: []
       indices: 
       edges: []
