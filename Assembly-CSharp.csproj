@@ -63,10 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scrips\MapSelector.cs" />
     <Compile Include="Assets\Scrips\MoventBullet.cs" />
     <Compile Include="Assets\Scrips\Player2Movent.cs" />
     <Compile Include="Assets\Scrips\PlayerMovent.cs" />
+    <Compile Include="Assets\Scrips\PlayerSelector.cs" />
     <Compile Include="Assets\Scrips\PowerUp.cs" />
+    <Compile Include="Assets\Scrips\SpawnPowerUps.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
