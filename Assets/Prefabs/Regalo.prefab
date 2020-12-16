@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6213627222222238837}
   m_Layer: 0
   m_Name: Regalo
-  m_TagString: Estrella
+  m_TagString: Regalo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

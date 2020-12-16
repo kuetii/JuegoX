@@ -35,13 +35,20 @@ public class PlayerMovent : MonoBehaviour
     public float current;
     public GameObject Bullet;
     public GameObject SitioDeSpawn;
+    public bool PowerupActivo = false;
+    public bool Stun = false;
+    public float CDPowerup;
+    public float CDPowerupMax;
+    public float CDstun;
+    public float CDstunMax;
    
+
     // Start is called before the first frame update
     void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
-        //textScore.text = "Score:" + score;
+       textScore.text = "Score:" + score;
 
     }
 
@@ -50,16 +57,42 @@ public class PlayerMovent : MonoBehaviour
     {
         current -= Time.deltaTime;
         //Jump Movent//
-        movenInput = Input.GetAxisRaw("HorizontalP1");
+        if (Stun == true)
+        {
+            movenInput = 0;
+            if (CDstun >= 0)
+            {
+                CDstun -= Time.deltaTime;
+            }
+            else if (CDstun<=0)
+            {
+               Stun = false;
+            }
+        }
+        else
+        {
+            movenInput = Input.GetAxisRaw("HorizontalP1");
+            if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                isJumping = true;
+                jumpTimeCounter = jumpTime;
+            }
+        }
+       
         rb.velocity = new Vector2(movenInput * speed, rb.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
-        if(currrentNoDamageCD>=0)
+        if(CDPowerup>=0)
         {
-            currrentNoDamageCD -= Time.deltaTime;
+            CDPowerup -= Time.deltaTime;
+        }
+        else
+        {
+            PowerupActivo = false;
         }
         //Spawn Bullet
-        if (Input.GetKeyDown(KeyCode.R) && current <= 0)
+       /* if (Input.GetKeyDown(KeyCode.R) && current <= 0)
         {
             current = cdMax;
          GameObject BalaTemporal = Instantiate(Bullet,SitioDeSpawn.transform.position, Bullet.transform.rotation);
@@ -76,6 +109,8 @@ public class PlayerMovent : MonoBehaviour
             }
             //si miro a la izquierda va la bala a la izquierda
         }
+        */
+        //Gira el sprite
         if (movenInput >  0)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
@@ -86,12 +121,7 @@ public class PlayerMovent : MonoBehaviour
         }
         //Jump
 
-        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.velocity = Vector2.up * jumpForce;
-            isJumping = true;
-            jumpTimeCounter = jumpTime;
-        }
+       
     }
     //puntuacion,PerdervidasAbismo 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -104,7 +134,8 @@ public class PlayerMovent : MonoBehaviour
         if (collision.gameObject.CompareTag("Regalo"))
         {
             Destroy(collision.gameObject);
-            Instantiate(Estrella, collision.gameObject.transform.position, Estrella.transform.rotation);
+            PowerupActivo = true;
+            CDPowerup = CDPowerupMax;
         }
         if (collision.gameObject.CompareTag("BastonNavidad"))
         {
@@ -118,9 +149,11 @@ public class PlayerMovent : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player"))
         {
-
-            Destroy(collision.gameObject);
-            SumScore(-10);
+            if (PowerupActivo == true)
+            {
+                collision.gameObject.GetComponent<Player2Movent>().Stun = true;
+                collision.gameObject.GetComponent<Player2Movent>().CDstun = CDstunMax;
+            }
         }
     }
     public void SumScore(int scoreToSum)
