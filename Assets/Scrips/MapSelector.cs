@@ -11,6 +11,6 @@ public class MapSelector : MonoBehaviour
     }
     public void Map2()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player2Movent : MonoBehaviour
 {
@@ -30,13 +31,21 @@ public class Player2Movent : MonoBehaviour
     public float CDstunMax;
     int score = 0;
     public Text textScore;
+   
+
+ float currentTime = 0f;
+    float startingTime = 60f;
 
 
+    [SerializeField] Text countdownText;
 
+    public bool playing = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentTime = startingTime;
+
         rb = GetComponent<Rigidbody2D>();
        textScore.text = "Score:" + score;
     }
@@ -44,50 +53,70 @@ public class Player2Movent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        current -= Time.deltaTime;
-        if (Stun == true)
+        if (playing == true)
         {
-            if (CDstun >= 0)
+            if (currentTime<=0)
             {
-                CDstun -= Time.deltaTime;
+                SceneManager.LoadScene(2);
             }
-            else if (CDstun <= 0)
-            {
-                Stun = false;
-            }
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < maxX)
-            {
-                transform.position = transform.position + Vector3.right * speed * Time.deltaTime;
-                this.GetComponent<SpriteRenderer>().flipX = false;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > minX)
-            {
-                transform.position = transform.position + Vector3.left * speed * Time.deltaTime;
-                this.GetComponent<SpriteRenderer>().flipX = true;
-            }
-            if (isGrounded == true && Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                rb.velocity = Vector2.up * jumpForce;
-                isJumping = true;
-                jumpTimeCounter = jumpTime;
-            }
-        }
-
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
-
-        if (CDPowerup >= 0)
-        {
-            CDPowerup -= Time.deltaTime;
-        }
-        else
-        {
-            PowerupActivo = false;
-        }
+            currentTime -= 1 * Time.deltaTime;
+       //     countdownText.text = currentTime.ToString();
 
 
+
+
+            current -= Time.deltaTime;
+            if (Stun == true)
+            {
+                if (CDstun >= 0)
+                {
+                    CDstun -= Time.deltaTime;
+                }
+                else if (CDstun <= 0)
+                {
+                    Stun = false;
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    if (transform.position.x > maxX)
+                    {
+                        transform.position = new Vector3(minX, transform.position.y, transform.position.z);
+                    }
+                    transform.position = transform.position + Vector3.right * speed * Time.deltaTime;
+                    this.GetComponent<SpriteRenderer>().flipX = false;
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    if (transform.position.x < minX)
+                    {
+                        transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
+                    }
+                    transform.position = transform.position + Vector3.left * speed * Time.deltaTime;
+                    this.GetComponent<SpriteRenderer>().flipX = true;
+                }
+                if (isGrounded == true && Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    rb.velocity = Vector2.up * jumpForce;
+                    isJumping = true;
+                    jumpTimeCounter = jumpTime;
+                }
+            }
+
+            isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
+
+            if (CDPowerup >= 0)
+            {
+                CDPowerup -= Time.deltaTime;
+            }
+            else
+            {
+                PowerupActivo = false;
+            }
+
+        }
     }
     /*
     if (Input.GetKeyDown(KeyCode.Keypad1) && current <= 0)
@@ -146,7 +175,10 @@ public class Player2Movent : MonoBehaviour
         textScore.text = "Score: " + score;
     }
 
-
+    public void playgame()
+    {
+        playing = true;
+    }
 
 
 

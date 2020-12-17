@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerMovent : MonoBehaviour
 {
 
@@ -30,7 +31,7 @@ public class PlayerMovent : MonoBehaviour
 
 
     public float maxX;
-    public float minX;  
+    public float minX;
     public float cdMax;
     public float current;
     public GameObject Bullet;
@@ -41,91 +42,113 @@ public class PlayerMovent : MonoBehaviour
     public float CDPowerupMax;
     public float CDstun;
     public float CDstunMax;
-   
+
+
+
+    float currentTime = 0f;
+    float startingTime = 60f;
+    [SerializeField] Text countdownText;
+    public bool playing = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        currentTime = startingTime;
         rb = GetComponent<Rigidbody2D>();
-       textScore.text = "Score:" + score;
+        textScore.text = "Score:" + score;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        current -= Time.deltaTime;
-        //Jump Movent//
-        if (Stun == true)
+        if (playing == true)
         {
-            movenInput = 0;
-            if (CDstun >= 0)
+            if (currentTime <= 0)
             {
-                CDstun -= Time.deltaTime;
+                SceneManager.LoadScene(2);
             }
-            else if (CDstun<=0)
+            currentTime -= 1 * Time.deltaTime;
+            current -= Time.deltaTime;
+            //Jump Movent//
+            if (Stun == true)
             {
-               Stun = false;
+                movenInput = 0;
+                if (CDstun >= 0)
+                {
+                    CDstun -= Time.deltaTime;
+                }
+                else if (CDstun <= 0)
+                {
+                    Stun = false;
+                }
             }
-        }
-        else
-        {
-            movenInput = Input.GetAxisRaw("HorizontalP1");
-            if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+            else
             {
-                rb.velocity = Vector2.up * jumpForce;
-                isJumping = true;
-                jumpTimeCounter = jumpTime;
+                movenInput = Input.GetAxisRaw("HorizontalP1");
+                if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+                {
+                    rb.velocity = Vector2.up * jumpForce;
+                    isJumping = true;
+                    jumpTimeCounter = jumpTime;
+                }
+                if (transform.position.x > maxX)
+                {
+                    transform.position = new Vector3(minX, transform.position.y, transform.position.z);
+                }
+                if (transform.position.x < minX)
+                {
+                    transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
+                }
             }
-        }
-       
-        rb.velocity = new Vector2(movenInput * speed, rb.velocity.y);
 
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
-        if(CDPowerup>=0)
-        {
-            CDPowerup -= Time.deltaTime;
-        }
-        else
-        {
-            PowerupActivo = false;
-        }
-        //Spawn Bullet
-       /* if (Input.GetKeyDown(KeyCode.R) && current <= 0)
-        {
-            current = cdMax;
-         GameObject BalaTemporal = Instantiate(Bullet,SitioDeSpawn.transform.position, Bullet.transform.rotation);
+            rb.velocity = new Vector2(movenInput * speed, rb.velocity.y);
 
-            // si miro hacia la derecha va la bala a la derecha
-            if (this.GetComponent<SpriteRenderer>().flipX == false) 
+            isGrounded = Physics2D.OverlapCircle(feetPos.position, CheckRadius, whatIsGround);
+            if (CDPowerup >= 0)
             {
-
-                BalaTemporal.GetComponent<MoventBullet>().Direccion = Vector3.right;
+                CDPowerup -= Time.deltaTime;
             }
-            else 
+            else
             {
-                BalaTemporal.GetComponent<MoventBullet>().Direccion = Vector3.left;
+                PowerupActivo = false;
             }
-            //si miro a la izquierda va la bala a la izquierda
-        }
-        */
-        //Gira el sprite
-        if (movenInput >  0)
-        {
-            this.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if(movenInput < 0)
-        {
-        this.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        //Jump
+            //Spawn Bullet
+            /* if (Input.GetKeyDown(KeyCode.R) && current <= 0)
+             {
+                 current = cdMax;
+              GameObject BalaTemporal = Instantiate(Bullet,SitioDeSpawn.transform.position, Bullet.transform.rotation);
 
-       
+                 // si miro hacia la derecha va la bala a la derecha
+                 if (this.GetComponent<SpriteRenderer>().flipX == false) 
+                 {
+
+                     BalaTemporal.GetComponent<MoventBullet>().Direccion = Vector3.right;
+                 }
+                 else 
+                 {
+                     BalaTemporal.GetComponent<MoventBullet>().Direccion = Vector3.left;
+                 }
+                 //si miro a la izquierda va la bala a la izquierda
+             }
+             */
+            //Gira el sprite
+            if (movenInput > 0)
+            {
+                this.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if (movenInput < 0)
+            {
+                this.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            //Jump
+
+
+        }
     }
     //puntuacion,PerdervidasAbismo 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.CompareTag("Estrella"))
         {
             Destroy(collision.gameObject);
@@ -144,7 +167,7 @@ public class PlayerMovent : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Abismo"))
         {
-            
+
             PerderVida(1);
         }
         if (collision.gameObject.CompareTag("Player"))
@@ -156,6 +179,7 @@ public class PlayerMovent : MonoBehaviour
             }
         }
     }
+
     public void SumScore(int scoreToSum)
     {
         score = score + scoreToSum;
@@ -193,6 +217,7 @@ public class PlayerMovent : MonoBehaviour
     }
 
 }
+
 
 
 

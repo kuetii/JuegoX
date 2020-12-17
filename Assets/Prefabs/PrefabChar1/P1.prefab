@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6414408005770221589}
   - component: {fileID: 6414408005770221585}
   m_Layer: 9
-  m_Name: P1
+  m_Name: MarioP1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,15 +28,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6414408005770221594}
-  m_LocalRotation: {x: 0.0073303473, y: 0, z: 0, w: 0.9999731}
-  m_LocalPosition: {x: 6.32, y: -11.2, z: 0}
-  m_LocalScale: {x: -23.56, y: 51.504593, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -115.5, y: -11.2, z: 0}
+  m_LocalScale: {x: 35.18057, y: 51.504593, z: 0}
   m_Children:
   - {fileID: 6414408005808690034}
   - {fileID: 6414408007182024435}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.84, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6414408005770221590
 SpriteRenderer:
   m_ObjectHideFlags: 0
