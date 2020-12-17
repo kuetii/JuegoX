@@ -546,6 +546,36 @@ Transform:
   m_Father: {fileID: 1428568143}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &171292864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171292865}
+  m_Layer: 0
+  m_Name: SpawnStars (10)
+  m_TagString: Estrella
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171292865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171292864}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -149.2, y: -72.1, z: 19.276962}
+  m_LocalScale: {x: 4.147428, y: 4.147428, z: 0}
+  m_Children: []
+  m_Father: {fileID: 456803702}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &204757288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5824329213273555897, guid: cf434455113f8d34f9ffeafe8ecacce5,
@@ -1405,6 +1435,9 @@ Transform:
   - {fileID: 407745297}
   - {fileID: 1111633479}
   - {fileID: 2048055155}
+  - {fileID: 1761287361}
+  - {fileID: 171292865}
+  - {fileID: 1091552264}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1429,11 +1462,11 @@ MonoBehaviour:
   - {fileID: 1420603673}
   - {fileID: 1697543046}
   - {fileID: 1489009138}
-  - {fileID: 0}
+  - {fileID: 1761287359}
   - {fileID: 1392168222}
   - {fileID: 581025172}
   - {fileID: 546468840}
-  - {fileID: 0}
+  - {fileID: 171292864}
   - {fileID: 1734352559}
   - {fileID: 1763328206}
   - {fileID: 997603857}
@@ -1441,7 +1474,7 @@ MonoBehaviour:
   - {fileID: 991956924}
   - {fileID: 1316115438}
   - {fileID: 83754249}
-  - {fileID: 0}
+  - {fileID: 1091552262}
   - {fileID: 407745295}
   - {fileID: 1111633477}
   - {fileID: 2048055153}
@@ -1882,6 +1915,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414408005770221594, guid: 6d8845373de50f84fb23c7ed88e4f3fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6414408006566233278, guid: 6d8845373de50f84fb23c7ed88e4f3fa,
         type: 3}
@@ -4954,6 +4992,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429f835b59573e640a7f8fb02b6a8a55, type: 3}
+--- !u!1 &1091552262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1091552264}
+  - component: {fileID: 1091552263}
+  m_Layer: 0
+  m_Name: SpawnStars (18)
+  m_TagString: Estrella
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1091552263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091552262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f42419a198ef7b419089395c2d6c5d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Estrella: {fileID: 6629944863526207277, guid: 020bd17f8830282469d0ed39ba8222f0,
+    type: 3}
+  spawners:
+  - {fileID: 6629944863526207277, guid: 020bd17f8830282469d0ed39ba8222f0, type: 3}
+--- !u!4 &1091552264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091552262}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 147.8, y: 20.3, z: 19.276962}
+  m_LocalScale: {x: 4.147428, y: 4.147428, z: 0}
+  m_Children: []
+  m_Father: {fileID: 456803702}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101484680
 GameObject:
   m_ObjectHideFlags: 0
@@ -8376,6 +8461,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.17489569}
   m_EdgeRadius: 0
+--- !u!1 &1761287359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1761287361}
+  - component: {fileID: 1761287360}
+  m_Layer: 0
+  m_Name: SpawnStars (6)
+  m_TagString: Estrella
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1761287360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761287359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f42419a198ef7b419089395c2d6c5d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Estrella: {fileID: 6629944863526207277, guid: 020bd17f8830282469d0ed39ba8222f0,
+    type: 3}
+  spawners:
+  - {fileID: 6629944863526207277, guid: 020bd17f8830282469d0ed39ba8222f0, type: 3}
+--- !u!4 &1761287361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761287359}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -33.2, y: -0.9, z: 19.276962}
+  m_LocalScale: {x: 4.147428, y: 4.147428, z: 0}
+  m_Children: []
+  m_Father: {fileID: 456803702}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1763002833
 GameObject:
   m_ObjectHideFlags: 0
@@ -9920,6 +10052,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303746781024251338, guid: cac633db3df15fb4e80db1cb4d104aba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1303746781024251351, guid: cac633db3df15fb4e80db1cb4d104aba,
         type: 3}

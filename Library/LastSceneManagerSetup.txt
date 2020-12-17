@@ -1,5 +1,5 @@
 sceneSetups:
-- path: "Assets/Scenes/TiempoA\xF1adir.unity"
+- path: Assets/Scenes/PruebaPersonajes.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
