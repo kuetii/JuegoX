@@ -7,7 +7,7 @@ public class DiscountTime : MonoBehaviour
     float currentTime = 0f;
     float startingTime = 60f;
 
-
+    //borrar esta linea
 
     [SerializeField] Text countdownText;
 
